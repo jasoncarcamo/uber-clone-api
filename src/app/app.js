@@ -8,22 +8,28 @@ const {NODE_ENV} = require("../../config");
 app.use(morgan((NODE_ENV === "production") ? "tiny" : "common"));
 app.use(express.static("public"));
 app.use(cors());
+app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(helmet());
 
 //Routes start here
+const DriverRegisterRouter = require("../routes/DriverRouters/DriverRegisterRouter/DriverRegisterRouter");
+const DriverLoginRouter = require("../routes/DriverRouters/DriverLoginRouter/DriverLoginRouter");
+
+app.use("/api", DriverRegisterRouter);
+app.use("/api", DriverLoginRouter);
 
 app.use(function errorHandler(error, req, res, next) {
     let response;
 
     if (NODE_ENV === 'production') {
-      response = { error: 'Server error' };
+        response = { error: 'Server error' };
     } else {
-      console.error(error)
-      response = { error: error.message, object: error };
+        console.error(error)
+        response = { error: error.message, object: error };
     };
 
-    res.status(500).json(response);
+    return res.status(500).json(response);
 });
 
 module.exports = app;
