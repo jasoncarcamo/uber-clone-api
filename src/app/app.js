@@ -16,8 +16,16 @@ app.use(helmet());
 const DriverRegisterRouter = require("../routes/DriverRouters/DriverRegisterRouter/DriverRegisterRouter");
 const DriverLoginRouter = require("../routes/DriverRouters/DriverLoginRouter/DriverLoginRouter");
 
+const PassengerRegisterRouter = require("../routes/PassengerRouters/PassengerRegisterRouter/PassengerRegisterRouter");
+const PassengersLoginRouter = require("../routes/PassengerRouters/PassengersLoginRouter/PassengersLoginRouter");
+
+//Driver routes
 app.use("/api", DriverRegisterRouter);
 app.use("/api", DriverLoginRouter);
+
+//Passenger routes
+app.use("/api", PassengerRegisterRouter);
+app.use("/api", PassengersLoginRouter);
 
 app.use(function errorHandler(error, req, res, next) {
     let response;

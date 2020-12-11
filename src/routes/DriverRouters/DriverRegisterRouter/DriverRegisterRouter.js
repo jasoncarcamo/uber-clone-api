@@ -29,7 +29,7 @@ DriverRegisterRouter
             console.log(value);
             if(!value){
                 return res.status(400).json({
-                    error: `Missing ${key} in body request`
+                    error: `Missing ${key}`
                 });
             };
         };
@@ -51,7 +51,8 @@ DriverRegisterRouter
                             .then( createdDriver => {
                                 const subject = createdDriver.mobile_number;
                                 const payload = {
-                                    user: createdDriver.mobile_number
+                                    user: createdDriver.mobile_number,
+                                    type: "Driver"
                                 };
 
                                 return res.status(200).json({

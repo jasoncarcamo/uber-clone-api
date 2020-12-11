@@ -21,7 +21,7 @@ DriverLoginRouter
         for(const [key, value] of Object.entries(driver)){
             if(!value){
                 return res.status(400).json({
-                    error: `Missing ${key} in body request.`
+                    error: `Missing ${key}`
                 });
             };
         };
@@ -44,11 +44,13 @@ DriverLoginRouter
 
                         const subject = dbDriver.mobile_number;
                         const payload = {
-                            user: dbDriver.mobile_number
+                            user: dbDriver.mobile_number,
+                            type: "Driver"
                         };
 
                         return res.status(200).json({
-                            token: JWT.createJwt(subject, payload)
+                            token: JWT.createJwt(subject, payload),
+                            success: "Succefully logged in driver"
                         });
                     })
             })
