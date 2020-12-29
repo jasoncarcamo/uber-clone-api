@@ -8,5 +8,7 @@ CREATE TABLE drivers (
     active BOOLEAN DEFAULT FALSE NOT NULL,
     paused BOOLEAN DEFAULT FALSE NOT NULL,
     on_trip BOOLEAN DEFAULT FALSE NOT NULL,
+    last_known_lat TEXT,
+    last_known_lng TEXT,
     date_created TIMESTAMP NOT NULL
 );
