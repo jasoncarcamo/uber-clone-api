@@ -56,12 +56,11 @@ PassengerRegisterRouter
                                 };
 
                                 return res.status(200).json({
-                                    token: JWT.createJwt(subject, payload),
-                                    createdPassenger
+                                    token: JWT.createJwt(subject, payload)
                                 });
-                            })
-                    })
-            })
+                            });
+                    });
+            });
     });
 
 module.exports = PassengerRegisterRouter;
