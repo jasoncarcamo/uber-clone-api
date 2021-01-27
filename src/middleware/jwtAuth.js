@@ -1,11 +1,14 @@
-const UserService = require("../services/UserService/UserService");
+const PassengersService = require("../services/PassengersService/PassengersService");
+const DriversService = require("../services/DriversService/DriversService");
 const JWT = require("../services/JWT/JWT");
+let UserService;
 
 function requireAuth( req, res, next){
     const authToken = req.get("authorization") || "";
     let bearerToken;
 
     if(!authToken.toLowerCase().startsWith("bearer ")){
+
         return res.status(401).json({ error: "Missing bearer token" });
     } else {
         bearerToken = authToken.slice( 7, authToken.length);
@@ -13,8 +16,16 @@ function requireAuth( req, res, next){
 
     try{
         const payload = JWT.verifyToken(bearerToken);
+
+        if(payload.type === "Driver"){
+            UserService = DriversService;
+        } else{
+            UserService = PassengersService;
+        };
+
+        console.log(payload)
         
-        UserService.getUser( req.app.get("db"), payload.sub)
+        UserService.getBySub( req.app.get("db"), payload.sub)
             .then( user => {
                 if(!user){
 
@@ -24,6 +35,8 @@ function requireAuth( req, res, next){
                 };
 
                 req.user = user;
+                req.type = payload.type;
+                
                 next();
             })
             .catch( err => {
@@ -31,7 +44,7 @@ function requireAuth( req, res, next){
             });
 
     } catch( error){
-        res.status(401).json({ error: "Unauthorized request"});
+        return res.status(401).json({ error: "Unauthorized request"});
     };
 };
 

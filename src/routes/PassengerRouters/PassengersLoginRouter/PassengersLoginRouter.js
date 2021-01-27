@@ -9,12 +9,12 @@ PassengersLoginRouter
     .post((req, res)=>{
         const database = req.app.get("db");
         const {
-            mobile_number,
+            email,
             password
         } = req.body;
 
         const passenger = {
-            mobile_number,
+            email,
             password
         };
 
@@ -26,11 +26,11 @@ PassengersLoginRouter
             };
         };
 
-        PassengersService.getPassengerByMobileNumber(database, passenger.mobile_number)
+        PassengersService.getPassengerByEmail(database, passenger.email)
             .then( dbPassenger => {
                 if(!dbPassenger){
                     return res.status(404).json({
-                        error: `${passenger.mobile_number} is not registered as a passenger`
+                        error: `${passenger.email} is not registered as a passenger`
                     });
                 };
 
@@ -42,15 +42,18 @@ PassengersLoginRouter
                             });
                         };
 
-                        const subject = dbPassenger.mobile_number;
+                        const subject = dbPassenger.email;
                         const payload = {
-                            user: dbPassenger.mobile_number,
+                            user: dbPassenger.email,
                             type: "Passenger"
                         };
+                        
+                        delete dbPassenger.password;
 
                         return res.status(200).json({
                             token: JWT.createJwt(subject, payload),
-                            success: "Succefully logged in passenger"
+                            success: "Succefully logged in passenger",
+                            dbPassenger
                         });
                     });
             });

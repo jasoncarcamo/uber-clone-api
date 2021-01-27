@@ -5,10 +5,13 @@ CREATE TABLE drivers (
     mobile_number TEXT NOT NULL,
     password TEXT NOT NULL,
     email TEXT,
-    active BOOLEAN DEFAULT FALSE NOT NULL,
-    paused BOOLEAN DEFAULT FALSE NOT NULL,
     on_trip BOOLEAN DEFAULT FALSE NOT NULL,
     last_known_lat TEXT,
     last_known_lng TEXT,
+    active BOOLEAN DEFAULT FALSE NOT NULL,
+    active_start_time TIMESTAMP,
+    paused BOOLEAN DEFAULT FALSE NOT NULL,
+    last_paused_time TIMESTAMP,
+    signed_off_time TIMESTAMP,
     date_created TIMESTAMP NOT NULL
 );

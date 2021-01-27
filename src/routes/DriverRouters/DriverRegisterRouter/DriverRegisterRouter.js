@@ -26,7 +26,6 @@ DriverRegisterRouter
         };
 
         for(const [key, value] of Object.entries(newDriver)){
-            console.log(value);
             if(!value){
                 return res.status(400).json({
                     error: `Missing ${key}`

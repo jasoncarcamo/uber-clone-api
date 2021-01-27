@@ -1,4 +1,7 @@
-const UserService = {
+const DriversService = {
+    getBySub(db, sub){
+        return db.select("*").from("drivers").where({email: sub}).first();
+    },
     getDriversByOptions(db, options){
         return db.select("*").from("drivers").where(options);
     },
@@ -22,4 +25,4 @@ const UserService = {
     }
 };
 
-module.exports = UserService;
+module.exports = DriversService;

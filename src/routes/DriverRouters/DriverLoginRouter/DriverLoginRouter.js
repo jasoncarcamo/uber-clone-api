@@ -52,9 +52,8 @@ DriverLoginRouter
                             token: JWT.createJwt(subject, payload),
                             success: "Succefully logged in driver"
                         });
-                    })
-            })
-
-    })
+                    });
+            });
+    });
 
 module.exports = DriverLoginRouter;

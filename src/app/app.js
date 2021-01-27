@@ -19,6 +19,8 @@ const DriverLoginRouter = require("../routes/DriverRouters/DriverLoginRouter/Dri
 const PassengerRegisterRouter = require("../routes/PassengerRouters/PassengerRegisterRouter/PassengerRegisterRouter");
 const PassengersLoginRouter = require("../routes/PassengerRouters/PassengersLoginRouter/PassengersLoginRouter");
 
+const PassengerInfoRouter = require("../routes/PassengerRouters/PassengerInfoRouter/PassengerInfoRouter");
+
 //Driver routes
 app.use("/api", DriverRegisterRouter);
 app.use("/api", DriverLoginRouter);
@@ -26,6 +28,8 @@ app.use("/api", DriverLoginRouter);
 //Passenger routes
 app.use("/api", PassengerRegisterRouter);
 app.use("/api", PassengersLoginRouter);
+
+app.use("/api", PassengerInfoRouter)
 
 app.use(function errorHandler(error, req, res, next) {
     let response;

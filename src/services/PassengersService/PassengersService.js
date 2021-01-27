@@ -1,4 +1,7 @@
 const PassengersService = {
+    getBySub(db, sub){
+        return db.select("*").from("passengers").where({email: sub}).first();
+    },
     getPassengersByOptions(db, options){
         return db.select("*").from("passengers").where(options);
     },
@@ -7,6 +10,9 @@ const PassengersService = {
     },
     getPassengerById(db, id){
         return db.select("*").from("passengers").where({id}).first();
+    },
+    getPassengerByEmail(db, email){
+        return db.select("*").from("passengers").where({email}).first();
     },
     getPassengerByMobileNumber(db, mobile_number){
         return db.select("*").from("passengers").where({mobile_number}).first();

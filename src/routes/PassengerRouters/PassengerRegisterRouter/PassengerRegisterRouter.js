@@ -34,11 +34,11 @@ PassengerRegisterRouter
             };
         };
 
-        PassengersService.getPassengerByMobileNumber(database, newPassenger.mobile_number)
+        PassengersService.getPassengerByEmail(database, newPassenger.email)
             .then( dbPassenger => {
                 if(dbPassenger){
                     return res.status(400).json({
-                        error: `${dbPassenger.mobile_number} is already registered as a passenger`
+                        error: `${dbPassenger.email} is already registered as a passenger`
                     });
                 };
 
@@ -49,14 +49,17 @@ PassengerRegisterRouter
 
                         PassengersService.createPassenger(database, newPassenger)
                             .then( createdPassenger => {
-                                const subject = createdPassenger.mobile_number;
+                                const subject = createdPassenger.email;
                                 const payload = {
-                                    user: createdPassenger.mobile_number,
+                                    user: createdPassenger.email,
                                     type: "Passenger"
                                 };
 
+                                delete createdPassenger.password;
+
                                 return res.status(200).json({
-                                    token: JWT.createJwt(subject, payload)
+                                    token: JWT.createJwt(subject, payload),
+                                    createdPassenger
                                 });
                             });
                     });
