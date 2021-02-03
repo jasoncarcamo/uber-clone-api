@@ -13,14 +13,14 @@ app.use(express.json());
 app.use(helmet());
 
 //Driver routes start here
-const DriverRegisterRouter = require("../routes/DriverRouters/DriverRegisterRouter/DriverRegisterRouter");
-const DriverLoginRouter = require("../routes/DriverRouters/DriverLoginRouter/DriverLoginRouter");
-const DriverInfoRouter = require("../routes/DriverRouters/DriverInfoRouter/DriverInfoRouter");
+const DriverRegisterRouter = require("../routes/DriverRoutes/DriverRegisterRouter/DriverRegisterRouter");
+const DriverLoginRouter = require("../routes/DriverRoutes/DriverLoginRouter/DriverLoginRouter");
+const DriverInfoRouter = require("../routes/DriverRoutes/DriverInfoRouter/DriverInfoRouter");
 
 //Passenger routes start here
-const PassengerRegisterRouter = require("../routes/PassengerRouters/PassengerRegisterRouter/PassengerRegisterRouter");
-const PassengersLoginRouter = require("../routes/PassengerRouters/PassengersLoginRouter/PassengersLoginRouter");
-const PassengerInfoRouter = require("../routes/PassengerRouters/PassengerInfoRouter/PassengerInfoRouter");
+const PassengerRegisterRouter = require("../routes/PassengerRoutes/PassengerRegisterRouter/PassengerRegisterRouter");
+const PassengersLoginRouter = require("../routes/PassengerRoutes/PassengersLoginRouter/PassengersLoginRouter");
+const PassengerInfoRouter = require("../routes/PassengerRoutes/PassengerInfoRouter/PassengerInfoRouter");
 
 //Driver api routes
 app.use("/api", DriverRegisterRouter);
