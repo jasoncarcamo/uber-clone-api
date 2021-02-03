@@ -8,11 +8,15 @@ DriverInfoRouter
     .get((req, res)=>{
         const driver = Object.assign({}, req.user);
 
-        delete driver.password;
-
         return res.status(200).json({
             driver
         });
     })
+    .patch((req, res)=>{
+
+    })
+    .delete((req, res)=>{
+
+    });
 
 module.exports = DriverInfoRouter;

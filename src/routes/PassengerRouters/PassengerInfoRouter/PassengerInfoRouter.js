@@ -10,12 +10,12 @@ PassengerInfoRouter
         const passenger = Object.assign({}, req.user);
         
         delete passenger.password;
-        
+
         return res.status(200).json({
             passenger
         });
     })
-    .post((req, res)=>{
+    .patch((req, res)=>{
         const {
             date_created,
             email,

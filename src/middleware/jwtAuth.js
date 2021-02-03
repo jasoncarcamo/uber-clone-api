@@ -16,7 +16,7 @@ function requireAuth( req, res, next){
 
     try{
         const payload = JWT.verifyToken(bearerToken);
-        console.log(payload);
+
         if(payload.type === "Driver"){
             UserService = DriversService;
         } else if(payload.type === "Passenger"){
@@ -32,7 +32,10 @@ function requireAuth( req, res, next){
                     });
                 };
 
+                delete user.password;
+
                 req.user = user;
+
                 req.type = payload.type;
                 
                 next();
