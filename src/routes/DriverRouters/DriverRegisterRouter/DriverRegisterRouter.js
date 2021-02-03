@@ -33,11 +33,11 @@ DriverRegisterRouter
             };
         };
 
-        DriversService.getDriverByMobileNumber(req.app.get("db"), newDriver.mobile_number)
+        DriversService.getDriverByEmail(req.app.get("db"), newDriver.email)
             .then( dbDriver => {
                 if(dbDriver){
                     return res.status(400).json({
-                        error: `${dbDriver.mobile_number} is already registered as a driver`
+                        error: `${dbDriver.email} is already registered as a driver`
                     });
                 };
 
@@ -48,14 +48,17 @@ DriverRegisterRouter
 
                         DriversService.createDriver(req.app.get("db"), newDriver)
                             .then( createdDriver => {
-                                const subject = createdDriver.mobile_number;
+                                const subject = createdDriver.email;
                                 const payload = {
-                                    user: createdDriver.mobile_number,
+                                    user: createdDriver.email,
                                     type: "Driver"
                                 };
 
+                                delete createdDriver.password
+
                                 return res.status(200).json({
-                                    token: JWT.createJwt(subject, payload)
+                                    token: JWT.createJwt(subject, payload),
+                                    createdDriver
                                 });
                             });
                     });

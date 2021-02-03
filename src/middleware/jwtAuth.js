@@ -16,14 +16,12 @@ function requireAuth( req, res, next){
 
     try{
         const payload = JWT.verifyToken(bearerToken);
-
+        console.log(payload);
         if(payload.type === "Driver"){
             UserService = DriversService;
-        } else{
+        } else if(payload.type === "Passenger"){
             UserService = PassengersService;
         };
-
-        console.log(payload)
         
         UserService.getBySub( req.app.get("db"), payload.sub)
             .then( user => {

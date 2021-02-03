@@ -1,4 +1,3 @@
-
 const express = require("express");
 const PassengerInfoRouter = express.Router();
 const {requireAuth} = require("../../../middleware/jwtAuth");
@@ -8,21 +7,13 @@ PassengerInfoRouter
     .route("/passenger-info")
     .all(requireAuth)
     .get((req, res)=>{
-        console.log(req)
-        PassengerService.getPassengerById(req.app.get("db"), req.user.id)
-            .then( passenger => {
-                if(!passenger){
-                    return res.status(404).json({
-                        error: "No passenger was found"
-                    });
-                };
-
-                delete passenger.password;
-
-                return res.status(200).json({
-                    passenger
-                });
-            });
+        const passenger = Object.assign({}, req.user);
+        
+        delete passenger.password;
+        
+        return res.status(200).json({
+            passenger
+        });
     })
     .post((req, res)=>{
         const {

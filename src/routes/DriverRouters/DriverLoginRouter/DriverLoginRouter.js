@@ -9,12 +9,12 @@ DriverLoginRouter
     .post((req, res)=>{
         const database = req.app.get("db");
         const {
-            mobile_number,
+            email,
             password
         } = req.body;
 
         const driver = {
-            mobile_number,
+            email,
             password
         };
 
@@ -26,11 +26,11 @@ DriverLoginRouter
             };
         };
 
-        DriversServices.getDriverByMobileNumber(database, driver.mobile_number)
+        DriversServices.getDriverByEmail(database, driver.email)
             .then( dbDriver => {
                 if(!dbDriver){
                     return res.status(404).json({
-                        error: `Driver with mobile number ${driver.mobile_number} does not exist`
+                        error: `Driver with email ${driver.email} does not exist`
                     });
                 };
 
@@ -38,18 +38,21 @@ DriverLoginRouter
                     .then( passwordMatch => {
                         if(!passwordMatch){
                             return res.status(400).json({
-                                error: "Incorrect password"
+                                error: "Incorrect email or password"
                             });
                         };
 
-                        const subject = dbDriver.mobile_number;
+                        const subject = dbDriver.email;
                         const payload = {
-                            user: dbDriver.mobile_number,
+                            user: dbDriver.email,
                             type: "Driver"
                         };
 
+                        delete dbDriver.password;
+
                         return res.status(200).json({
                             token: JWT.createJwt(subject, payload),
+                            driver: dbDriver,
                             success: "Succefully logged in driver"
                         });
                     });

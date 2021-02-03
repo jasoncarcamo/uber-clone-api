@@ -12,23 +12,24 @@ app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 app.use(helmet());
 
-//Routes start here
+//Driver routes start here
 const DriverRegisterRouter = require("../routes/DriverRouters/DriverRegisterRouter/DriverRegisterRouter");
 const DriverLoginRouter = require("../routes/DriverRouters/DriverLoginRouter/DriverLoginRouter");
+const DriverInfoRouter = require("../routes/DriverRouters/DriverInfoRouter/DriverInfoRouter");
 
+//Passenger routes start here
 const PassengerRegisterRouter = require("../routes/PassengerRouters/PassengerRegisterRouter/PassengerRegisterRouter");
 const PassengersLoginRouter = require("../routes/PassengerRouters/PassengersLoginRouter/PassengersLoginRouter");
-
 const PassengerInfoRouter = require("../routes/PassengerRouters/PassengerInfoRouter/PassengerInfoRouter");
 
-//Driver routes
+//Driver api routes
 app.use("/api", DriverRegisterRouter);
 app.use("/api", DriverLoginRouter);
+app.use("/api", DriverInfoRouter);
 
-//Passenger routes
+//Passenger api routes
 app.use("/api", PassengerRegisterRouter);
 app.use("/api", PassengersLoginRouter);
-
 app.use("/api", PassengerInfoRouter)
 
 app.use(function errorHandler(error, req, res, next) {

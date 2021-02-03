@@ -11,6 +11,9 @@ const DriversService = {
     getDriverById(db, id){
         return db.select("*").from("drivers").where({id}).first();
     },
+    getDriverByEmail(db, email){
+        return db.select("*").from("drivers").where({email}).first();
+    },
     getDriverByMobileNumber(db, mobile_number){
         return db.select("*").from("drivers").where({mobile_number}).first();
     },
