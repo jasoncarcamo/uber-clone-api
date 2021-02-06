@@ -55,8 +55,6 @@ PassengerRegisterRouter
                                     type: "Passenger"
                                 };
 
-                                delete createdPassenger.password;
-
                                 return res.status(200).json({
                                     token: JWT.createJwt(subject, payload),
                                     createdPassenger

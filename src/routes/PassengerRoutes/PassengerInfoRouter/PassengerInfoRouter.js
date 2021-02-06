@@ -8,8 +8,6 @@ PassengerInfoRouter
     .all(requireAuth)
     .get((req, res)=>{
         const passenger = Object.assign({}, req.user);
-        
-        delete passenger.password;
 
         return res.status(200).json({
             passenger

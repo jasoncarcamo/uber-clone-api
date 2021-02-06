@@ -47,8 +47,6 @@ PassengersLoginRouter
                             user: dbPassenger.email,
                             type: "Passenger"
                         };
-                        
-                        delete dbPassenger.password;
 
                         return res.status(200).json({
                             token: JWT.createJwt(subject, payload),

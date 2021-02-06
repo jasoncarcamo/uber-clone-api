@@ -48,8 +48,6 @@ DriverLoginRouter
                             type: "Driver"
                         };
 
-                        delete dbDriver.password;
-
                         return res.status(200).json({
                             token: JWT.createJwt(subject, payload),
                             driver: dbDriver,

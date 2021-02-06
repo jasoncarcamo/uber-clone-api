@@ -16,21 +16,31 @@ app.use(helmet());
 const DriverRegisterRouter = require("../routes/DriverRoutes/DriverRegisterRouter/DriverRegisterRouter");
 const DriverLoginRouter = require("../routes/DriverRoutes/DriverLoginRouter/DriverLoginRouter");
 const DriverInfoRouter = require("../routes/DriverRoutes/DriverInfoRouter/DriverInfoRouter");
+const CurrentTripsRouter = require("../routes/DriverRoutes/CurrentTripsRouter/CurrentTripsRouter");
+const DriverActiveRouter = require("../routes/DriverRoutes/DriverActiveRouter/DriverActiveRouter");
 
 //Passenger routes start here
 const PassengerRegisterRouter = require("../routes/PassengerRoutes/PassengerRegisterRouter/PassengerRegisterRouter");
 const PassengersLoginRouter = require("../routes/PassengerRoutes/PassengersLoginRouter/PassengersLoginRouter");
 const PassengerInfoRouter = require("../routes/PassengerRoutes/PassengerInfoRouter/PassengerInfoRouter");
 
+//Trips routes start here
+const TripsRouter = require("../routes/TripsRoutes/TripsRouter/TripsRouter");
+
 //Driver api routes
 app.use("/api", DriverRegisterRouter);
 app.use("/api", DriverLoginRouter);
 app.use("/api", DriverInfoRouter);
+app.use("/api/", CurrentTripsRouter);
+app.use("/api", DriverActiveRouter);
 
 //Passenger api routes
 app.use("/api", PassengerRegisterRouter);
 app.use("/api", PassengersLoginRouter);
 app.use("/api", PassengerInfoRouter)
+
+//Trips api routes
+app.use("/api", TripsRouter);
 
 app.use(function errorHandler(error, req, res, next) {
     let response;
