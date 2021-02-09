@@ -119,6 +119,14 @@ TripsRouter
         const dataBase = req.app.get("db");
         const id = req.params.id;
 
+        for(const [key, value] of Object.entries(updateTrip)){
+            if(value === undefined){
+                return res.status(400).json({
+                    error: `Missing ${key}`
+                });
+            };
+        };
+
         TripServices.getTripById(dataBase, id)
             .then( dbTrip => {
                 if(!dbTrip){
@@ -154,7 +162,7 @@ TripsRouter
                             success: "Trip hous been deleted"
                         });
                     });
-            })
+            });
     });
 
 module.exports = TripsRouter;
