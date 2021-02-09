@@ -8,6 +8,7 @@ CREATE TABLE drivers (
     on_trip BOOLEAN DEFAULT FALSE NOT NULL,
     last_known_lat TEXT,
     last_known_lng TEXT,
+    last_zip_code TEXT,
     active BOOLEAN DEFAULT FALSE NOT NULL,
     active_start_time TIMESTAMP,
     paused BOOLEAN DEFAULT FALSE NOT NULL,

@@ -159,7 +159,7 @@ TripsRouter
                     .then( deletedTrip => {
                         console.log("Line 153:", deletedTrip)
                         return res.status(200).json({
-                            success: "Trip hous been deleted"
+                            success: "Trip has been deleted"
                         });
                     });
             });
