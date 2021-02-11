@@ -18,6 +18,7 @@ const DriverLoginRouter = require("../routes/DriverRoutes/DriverLoginRouter/Driv
 const DriverInfoRouter = require("../routes/DriverRoutes/DriverInfoRouter/DriverInfoRouter");
 const CurrentTripsRouter = require("../routes/DriverRoutes/CurrentTripsRouter/CurrentTripsRouter");
 const DriverActiveRouter = require("../routes/DriverRoutes/DriverActiveRouter/DriverActiveRouter");
+const UnacceptedTripRouter = require("../routes/DriverRoutes/UnacceptedTripRouter/UnacceptedRouter");
 
 //Passenger routes start here
 const PassengerRegisterRouter = require("../routes/PassengerRoutes/PassengerRegisterRouter/PassengerRegisterRouter");
@@ -34,6 +35,7 @@ app.use("/api", DriverLoginRouter);
 app.use("/api", DriverInfoRouter);
 app.use("/api/", CurrentTripsRouter);
 app.use("/api", DriverActiveRouter);
+app.use("/api", UnacceptedTripRouter);
 
 //Passenger api routes
 app.use("/api", PassengerRegisterRouter);

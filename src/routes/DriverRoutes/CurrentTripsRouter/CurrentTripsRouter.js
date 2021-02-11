@@ -17,12 +17,21 @@ CurrentTripsRouter
                 });
             });
     })
-    
+
 CurrentTripsRouter
-    .route("/driver/current-trip/:tripId")
+    .route("/driver/current-trip/:driver_id")
     .all(requireAuth)
     .get((req, res)=>{
+        const database = req.app.get("db");
+        const id = req.user.id;
 
+        DriversTripService.getDriverActiveTrips(database, id)
+            .then( driverTrips => {
+                
+                return res.status(200).json({
+                    driverTrips
+                });
+            });
     })
     .patch((req, res)=>{
 

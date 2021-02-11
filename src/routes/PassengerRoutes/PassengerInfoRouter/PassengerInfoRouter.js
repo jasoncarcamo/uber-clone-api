@@ -57,7 +57,6 @@ PassengerInfoRouter
 
                 PassengerService.updatePassenger(req.app.get("db"), updatePassenger, id)
                     .then( updatedPassenger => {
-                        console.log("Updated passenger: ", updatedPassenger);
 
                         return res.status(200).json({
                             updatedPassenger

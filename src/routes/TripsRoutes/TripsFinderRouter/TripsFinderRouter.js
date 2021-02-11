@@ -13,8 +13,6 @@ TripsFinderRouter
         };
         const dataBase = req.app.get("db");
 
-        console.log(position);
-
         TripServices.getTripByRadius(dataBase, position)
             .then( trip => {
 
@@ -27,9 +25,11 @@ TripsFinderRouter
                 const updateTrip = Object.assign({}, trip);
 
                 updateTrip.driver_viewing = true;
+                updateTrip.driver_id = req.user.id;
 
                 TripServices.updateTrip(dataBase, updateTrip, updateTrip.id)
                     .then( updatedTrip => {
+
                         return res.status(200).json({
                             trip: updatedTrip
                         });

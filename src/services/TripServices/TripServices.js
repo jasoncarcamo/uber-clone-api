@@ -1,6 +1,5 @@
 const TripServices = {
     getTripsByZipCode(db, pick_up_zip_code){
-        console.log(twoMileRadius);
 
         return db.select("*").from("trips").where({
             pick_up_zip_code,
