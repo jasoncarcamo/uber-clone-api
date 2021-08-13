@@ -13,8 +13,11 @@ PassengerRegisterRouter
             last_name,
             mobile_number,
             email,
-            password,
-            date_created
+            home_address,
+            work_address,
+            trip_redemption,
+            date_created,
+            member
         } = req.body;
 
         const newPassenger = {
@@ -22,12 +25,16 @@ PassengerRegisterRouter
             last_name,
             mobile_number,
             email,
-            password,
-            date_created: date_created || new Date()
+            home_address,
+            work_address,
+            trip_redemption,
+            date_created,
+            member
         };
 
         for(const [key, value] of Object.entries(newPassenger)){
-            if(!value){
+            // value can equal 
+            if(value === undefined){
                 return res.status(400).json({
                     error: `Missing ${key}`
                 });

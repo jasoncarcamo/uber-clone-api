@@ -11,6 +11,7 @@ CREATE TABLE trips (
     drop_off_lng TEXT,
     drop_off_zip_code TEXT,
     driver_viewing BOOLEAN DEFAULT FALSE NOT NULL,
+    last_driver_viewed BIGINT,
     number_of_stops BIGINT DEFAULT 0 NOT NULL,
     stops TEXT [] DEFAULT '{}' NOT NULL, 
     distance TEXT,

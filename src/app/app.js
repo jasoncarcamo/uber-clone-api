@@ -28,6 +28,7 @@ const PassengerInfoRouter = require("../routes/PassengerRoutes/PassengerInfoRout
 //Trips routes start here
 const TripsRouter = require("../routes/TripsRoutes/TripsRouter/TripsRouter");
 const TripsFinderRouter = require("../routes/TripsRoutes/TripsFinderRouter/TripsFinderRouter");
+const TripConfirmationRouter = require("../routes/TripsRoutes/TripConfirmationRouter/TripConfirmationRouter");
 
 //Driver api routes
 app.use("/api", DriverRegisterRouter);
@@ -45,6 +46,7 @@ app.use("/api", PassengerInfoRouter)
 //Trips api routes
 app.use("/api", TripsRouter);
 app.use("/api", TripsFinderRouter);
+app.use("/api", TripConfirmationRouter);
 
 app.use(function errorHandler(error, req, res, next) {
     let response;

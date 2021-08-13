@@ -11,8 +11,8 @@ DriverRegisterRouter
             first_name,
             last_name,
             mobile_number,
-            password,
             email,
+            password,
             date_created
         } = req.body;
 
@@ -20,13 +20,13 @@ DriverRegisterRouter
             first_name,
             last_name,
             mobile_number,
-            password,
             email,
-            date_created: date_created || new Date()
+            password,
+            date_created
         };
 
         for(const [key, value] of Object.entries(newDriver)){
-            if(!value){
+            if(value === undefined){
                 return res.status(400).json({
                     error: `Missing ${key}`
                 });

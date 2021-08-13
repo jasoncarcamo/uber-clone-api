@@ -8,12 +8,17 @@ CurrentTripsRouter
     .all(requireAuth)
     .get((req, res)=>{
         const database = req.app.get("db");
-
+        console.log("Deasring")
         DriversTripService.getDriverActiveTrips(database, req.user.id)
-            .then( driverTrips => {
-                
+            .then( trip => {
+
+                if(!trip){
+                    return res.status(404).json({
+                        error: "Active trip not found"
+                    })
+                }
                 return res.status(200).json({
-                    driverTrips
+                    trip
                 });
             });
     })

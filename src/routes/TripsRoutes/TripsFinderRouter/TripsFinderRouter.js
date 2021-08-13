@@ -14,17 +14,37 @@ TripsFinderRouter
         const dataBase = req.app.get("db");
 
         TripServices.getTripByRadius(dataBase, position)
-            .then( trip => {
-
-                if(!trip){
+            .then( trips => {
+                let trip;
+                let newTrips = trips;
+                let foundTrip = false;
+                if(trips.length === 0){
                     return res.status(404).json({
-                        error: "No trip found near by"
+                        error: "No trips found near by"
                     });
+                };
+                
+                // while loops looks to see if trip was not last seen by current driver request
+                while(!foundTrip){
+                    if(newTrips.length === 0){
+                        return res.status(404).json({
+                            error: "No trip found near by"
+                        });
+                    };
+
+                    trip = newTrips[0];
+
+                    if(trip.last_driver_viewed !== req.user.id){
+                        foundTrip = true;
+                    } else{
+                        newTrips = newTrips.slice(1);
+                    };
                 };
 
                 const updateTrip = Object.assign({}, trip);
 
                 updateTrip.driver_viewing = true;
+                updateTrip.last_driver_viewed = req.user.id;
                 updateTrip.driver_id = req.user.id;
 
                 TripServices.updateTrip(dataBase, updateTrip, updateTrip.id)

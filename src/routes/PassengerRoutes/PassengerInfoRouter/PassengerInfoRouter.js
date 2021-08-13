@@ -15,31 +15,29 @@ PassengerInfoRouter
     })
     .patch((req, res)=>{
         const {
-            date_created,
-            email,
             first_name,
-            home_address,
             last_name,
-            member,
             mobile_number,
+            email,
+            home_address,
+            work_address,
             trip_redemption,
-            work_address
+            member
         } = req.body;
         
-        const updatePassenger = {
-            date_created,
-            email,
+        const passenger = {
+            id: req.user.id,
             first_name,
-            home_address,
             last_name,
-            member,
             mobile_number,
+            email,
+            home_address,
+            work_address,
             trip_redemption,
-            work_address
-        }
-        const id = req.user.id;
+            member
+        };
 
-        for(const [key, value] of Object.entries(updatePassenger)){
+        for(const [key, value] of Object.entries(passenger)){
             if(value === undefined){
                 return res.status(400).json({
                     error: `Missing ${key}`
@@ -47,7 +45,7 @@ PassengerInfoRouter
             };
         };
 
-        PassengerService.getPassengerById(req.app.get("db"), id)
+        PassengerService.getPassengerById(req.app.get("db"), passenger.id)
             .then( dbPassenger => {
                 if(!dbPassenger){
                     return res.status(404).json({

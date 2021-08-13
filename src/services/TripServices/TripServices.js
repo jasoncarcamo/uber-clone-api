@@ -22,8 +22,7 @@ const TripServices = {
             })
             .whereBetween("pick_up_lat", [southBoundRadius, northBoundRadius])
             .whereBetween("pick_up_lng", [eastBoundRadius, westBoundRadius])
-            .orderBy("date_created")
-            .first();
+            .orderBy("date_created");
     },
     getTripById(db, id){
         return db.select("*").from("trips").where({id}).first();
