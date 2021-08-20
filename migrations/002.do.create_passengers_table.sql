@@ -9,5 +9,5 @@ CREATE TABLE passengers (
     work_address TEXT,
     trip_redemption BIGINT DEFAULT 0 NOT NULL,
     member BOOLEAN DEFAULT FALSE NOT NULL,
-    date_created TIMESTAMP NOT NULL
+    date_created TIMESTAMP
 );
