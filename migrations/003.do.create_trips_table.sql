@@ -28,5 +28,5 @@ CREATE TABLE trips (
     driver_accepted BOOLEAN DEFAULT FALSE NOT NULL,
     driver_id BIGINT,
     passenger_id BIGINT REFERENCES passengers(id) NOT NULL,
-    date_created TIMESTAMP NOT NULL
+    date_created TIMESTAMP
 );
