@@ -6,13 +6,13 @@ CREATE TABLE drivers (
     email TEXT NOT NULL,
     password TEXT NOT NULL,
     on_trip BOOLEAN DEFAULT FALSE NOT NULL,
-    last_known_lat TEXT DEFAULT "" NOT NULL,
-    last_known_lng TEXT DEFAULT "" NOT NULL,
-    last_zip_code TEXT DEFAULT "" NOT NULL,
+    last_known_lat TEXT,
+    last_known_lng TEXT,
+    last_zip_code TEXT,
     active BOOLEAN DEFAULT FALSE NOT NULL,
-    active_start_time TIMESTAMP DEFAULT FALSE NOT NULL,
+    active_start_time TIMESTAMP,
     paused BOOLEAN DEFAULT FALSE NOT NULL,
-    last_paused_time TIMESTAMP DEFAULT FALSE NOT NULL,
-    signed_off_time TIMESTAMP NOT NULL,
-    date_created TIMESTAMP NOT NULL
+    last_paused_time TIMESTAMP,
+    signed_off_time TIMESTAMP,
+    date_created TIMESTAMP
 );

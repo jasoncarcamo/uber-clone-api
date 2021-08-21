@@ -13,6 +13,7 @@ PassengerRegisterRouter
             last_name,
             mobile_number,
             email,
+            password,
             home_address,
             work_address,
             trip_redemption,
@@ -25,6 +26,7 @@ PassengerRegisterRouter
             last_name,
             mobile_number,
             email,
+            password,
             home_address,
             work_address,
             trip_redemption,
@@ -61,6 +63,8 @@ PassengerRegisterRouter
                                     user: createdPassenger.email,
                                     type: "Passenger"
                                 };
+
+                                delete createdPassenger.password;
 
                                 return res.status(200).json({
                                     token: JWT.createJwt(subject, payload),
