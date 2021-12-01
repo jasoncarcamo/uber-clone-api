@@ -26,6 +26,7 @@ CREATE TABLE trips (
     time_requested TIMESTAMP,
     request_confirmed BOOLEAN DEFAULT TRUE NOT NULL,
     driver_accepted BOOLEAN DEFAULT FALSE NOT NULL,
+    drivers_who_accepted INT [] DEFAULT '{}' NOT NULL,
     driver_id BIGINT,
     passenger_id BIGINT REFERENCES passengers(id) NOT NULL,
     date_created TIMESTAMP
