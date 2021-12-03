@@ -54,6 +54,8 @@ DriverRegisterRouter
                                     type: "Driver"
                                 };
 
+                                delete createdDriver.password;
+
                                 return res.status(200).json({
                                     token: JWT.createJwt(subject, payload),
                                     createdDriver
